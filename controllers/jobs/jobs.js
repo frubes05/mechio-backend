@@ -57,15 +57,15 @@ const addNewJob = async(req, res) => {
 
     try {
         if(!companyId || !company || !position || !description || !location || !seniority || !pay || !date) {
-            res.json({message: 'Molimo unesite sve relevantne podatke!', status: 404})
+            return res.json({message: 'Molimo unesite sve relevantne podatke!', status: 404})
         }else {
             const getCompany = await Companies.findOne({_id: companyId});
             const newJob = Jobs({companyId, company, companyImage: getCompany.companyImage, position, description, location, seniority, pay, date})
             await newJob.save();
-            res.json({message: 'Uspješno ste dodali novi oglas!', status: 200});
+            return res.json({message: 'Uspješno ste dodali novi oglas!', status: 200});
         }
     } catch (error) {
-        res.json({message: 'Došlo je do pogrješke!', status: 400});
+        return res.json({message: 'Došlo je do pogrješke!', status: 400});
     }
 };
 
@@ -83,7 +83,7 @@ const editJob = async(req, res) => {
             return res.status(200).json({message: 'Oglas uspješno izmijenjen!'})
         }
     } catch (error) {
-        res.json({message: 'Došlo je do pogrješke', status: 404})
+        return res.json({message: 'Došlo je do pogrješke', status: 404})
     }
 };
 
