@@ -53,14 +53,14 @@ const getAllApplications = async(req, res) => {
 }
 
 const addNewJob = async(req, res) => {
-    const {companyId, company, position, requirementsList, benefitsList, skillsList, description, location, seniority, pay, date} = req.body;
+    const {companyId, company, position, description, location, seniority, pay, date} = req.body;
 
     try {
-        if(!companyId || !company || !position || !requirementsList || !benefitsList || !skillsList || !description || !location || !seniority || !pay || !date) {
+        if(!companyId || !company || !position || !description || !location || !seniority || !pay || !date) {
             res.json({message: 'Molimo unesite sve relevantne podatke!', status: 404})
         }else {
             const getCompany = await Companies.findOne({_id: companyId});
-            const newJob = Jobs({companyId, company, companyImage: getCompany.companyImage, position, skillsList, requirementsList, benefitsList, description, location, seniority, pay, date})
+            const newJob = Jobs({companyId, company, companyImage: getCompany.companyImage, position, description, location, seniority, pay, date})
             await newJob.save();
             res.json({message: 'Uspješno ste dodali novi oglas!', status: 200});
         }
@@ -71,13 +71,13 @@ const addNewJob = async(req, res) => {
 
 const editJob = async(req, res) => {
     const {id} = req.params;
-    const {companyId, company, position, requirementsList, benefitsList, skillsList, description, location, seniority, pay, date} = req.body;
+    const {companyId, company, position, description, location, seniority, pay, date} = req.body;
 
     try {
-        if (!companyId || !position || requirementsList.length === 0 || benefitsList.length === 0 || skillsList.length === 0 || !description || !location || !seniority || !pay || !date) {
+        if (!companyId || !position || !description || !location || !seniority || !pay || !date) {
             return res.json({message: 'Unesite sve potrebne podatke!', status: 404})
         } else {
-            await Jobs.findOneAndUpdate({_id: id}, {_id: id, companyId, company, position, requirementsList, benefitsList, skillsList, description, location, seniority, pay, date}, {
+            await Jobs.findOneAndUpdate({_id: id}, {_id: id, companyId, company, position, description, location, seniority, pay, date}, {
                 new: true
             })
             return res.status(200).json({message: 'Oglas uspješno izmijenjen!'})
