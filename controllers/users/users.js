@@ -39,9 +39,9 @@ const loginUser = async(req, res) => {
 }
 
 const registerUser = async(req, res) => {
-    const {fullname, password, email, about, cv, image} = req.body;
+    const {fullname, password, email, number, address, about, cv, image} = req.body;
 
-    if (!fullname || !password || !email || !cv) {
+    if (!fullname || !password || !email || !cv || !number || !address) {
         return res.status(400).json({message: 'Molimo vas da popunite sva potrebna polja!', status: 400})
     }
 
@@ -55,6 +55,8 @@ const registerUser = async(req, res) => {
             fullname,
             password,
             email,
+            number,
+            address,
             about,
             cv,
             image: req.file.path,
