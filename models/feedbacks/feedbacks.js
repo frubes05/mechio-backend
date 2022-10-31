@@ -9,6 +9,10 @@ const FeedbackSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    companyImage: {
+        type: String,
+        required: true
+    },
     position: {
         type: String,
         required: true,
