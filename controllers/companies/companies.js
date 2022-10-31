@@ -80,7 +80,7 @@ const registerCompany = async(req, res) => {
 
 const getAllCompanies = async(req, res) => {
     try {
-        const allCompanies = await Companies.find();
+        const allCompanies = await Companies.find({});
         res.status(200).json(allCompanies)
     } catch (error) {
         res.status(400).json({message: 'Nema poslodavaca u bazi podataka!'})
@@ -89,10 +89,10 @@ const getAllCompanies = async(req, res) => {
 
 const getSpecificCompanyEmail = async(req, res, next) => {
     try {
-        const specificCompany = await Companies.find({companyEmail: req.params.id});
+        const specificCompany = await Companies.findOne({companyEmail: req.params.id});
         return res.status(200).json(specificCompany);
     } catch (error) {
-        return res.status(400).json({message: 'Nema posloprimca u bazi podataka!'})
+        return res.status(400).json({message: 'Nema poslodavca u bazi podataka!'})
     }
 }
 
