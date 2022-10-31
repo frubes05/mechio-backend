@@ -29,10 +29,10 @@ const newCompanyFeedback = async(req, res) => {
     const { userId, companyId, position, rating, category, positives, negatives, date} = req.body;
 
     const company = await Companies.findOne({_id: companyId});
-    const alreadyExists = await Feedback.findOne({userId: userId});
+    const alreadyExists = await Feedback.findOne({userId: userId, companyId: companyId, category: category});
 
     if (alreadyExists) {
-        return res.status(403).json({message: 'Već ste dali recenziju za ovaj posao!'});
+        return res.status(403).json({message: 'Već ste dali recenziju za ovu kategoriju!'});
     } else {
         const feedback = Feedback({ userId, companyId, position, category, rating, positives, negatives, date});
         await feedback.save();
