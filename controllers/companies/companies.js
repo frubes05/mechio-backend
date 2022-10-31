@@ -96,15 +96,14 @@ const getSpecificCompanyEmail = async(req, res, next) => {
     }
 }
 
-const getSpecificCompany = async(req, res, next) => {
+const getSpecificCompany = async(req, res) => {
     try {
         const specificCompany = await Companies.findById(req.params.id);
         if (specificCompany) {
             return res.status(200).json(specificCompany);
         }
-        next();
     } catch (error) {
-        return res.status(400).json({message: 'Nema posloprimca u bazi podataka!'})
+        return res.status(400).json({message: 'Nema poslodavca u bazi podataka!'})
     }
 }
 

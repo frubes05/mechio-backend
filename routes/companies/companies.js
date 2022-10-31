@@ -6,6 +6,7 @@ const fileUpload = require('../../middleware/file-upload');
 router.post('/login-poslodavac', company.loginCompany);
 router.post('/novi-poslodavac', fileUpload.single("image"), company.registerCompany);
 router.get('/', company.getAllCompanies);
-router.get('/:id', company.getSpecificCompany, company.getSpecificCompanyEmail);
+router.get('/:id', company.getSpecificCompany);
+router.get('/email/:id', company.getSpecificCompanyEmail);
 
 module.exports = router;
