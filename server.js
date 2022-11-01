@@ -21,11 +21,11 @@ app.use(cors());
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
-app.use('https://mechio-test.onrender.com/poslodavci', companies);
-app.use('https://mechio-test.onrender.com/posloprimci', users);
-app.use('https://mechio-test.onrender.com/poslovi', jobs);
-app.use('https://mechio-test.onrender.com/recenzije', feedbacks);
-app.use('https://mechio-test.onrender.com/profil', profile);
+app.use('/poslodavci', companies);
+app.use('/posloprimci', users);
+app.use('/poslovi', jobs);
+app.use('/recenzije', feedbacks);
+app.use('/profil', profile);
 
 
 app.listen(9000, (PORT) => {
