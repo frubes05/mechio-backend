@@ -1,6 +1,7 @@
 const {Jobs} = require('../../models/jobs/jobs');
 const Companies = require('../../models/companies/companies');
 const {Users} = require('../../models/users/users');
+const { Tracking } = require('../../models/tracking/tracking');
 
 const getAllJobs = async(req, res) => {
     try {
@@ -92,6 +93,7 @@ const deleteJob = async(req, res) => {
 
     try {
         await Jobs.findOneAndRemove({_id: id});
+        await Tracking.deleteMany({jobId: id});
         res.status(200).json({message: 'Oglas uspješno izbrisan!'});
     } catch (error) {
         res.json({message: 'Došlo je do pogrješke!', status: 404});

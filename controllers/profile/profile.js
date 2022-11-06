@@ -2,6 +2,7 @@ const Companies = require('../../models/companies/companies');
 const { Feedback } = require('../../models/feedbacks/feedbacks');
 const { Jobs } = require('../../models/jobs/jobs');
 const {Users} = require('../../models/users/users');
+const { Tracking } = require('../../models/tracking/tracking');
 
 const getSpecificProfile = async(req, res) => {
     const user = await Users.findById(req.params.id);
@@ -51,12 +52,14 @@ const deleteSpecificProfile = async(req, res) => {
             await Companies.findByIdAndDelete(req.params.id)
             await Feedback.deleteMany({companyId: req.params.id});
             await Jobs.deleteMany({companyId: req.params.id});
+            await Tracking.deleteMany({companyId: req.params.id});
             company.companyFeedbacks = [];
             await company.save();
             return res.status(200).json({message: 'Tvrtka uspješno izbrisana'});
         } else if (user) {
             await Users.findByIdAndDelete(req.params.id);
             await Feedback.deleteMany({userId: req.params.id});
+            await Tracking.deleteMany({userId: req.params.id});
             const companies = await Companies.find({});
             const specificCompanies = companies.map(async(company) => {
                 const index = company.companyFeedbacks.findIndex(feedback => feedback.userId === req.params.id);
