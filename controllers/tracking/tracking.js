@@ -1,8 +1,7 @@
 const { Tracking } = require("../../models/tracking/tracking");
-const Companies = require("../../models/companies/companies");
 
 const newTracking = async (req, res, next) => {
-  const { action, category, companyId, isEmployed, isRegistered, userId, userLocation, jobId, date } =
+  const { action, category, companyId, isEmployed, isRegistered, userId, userLocation, jobId, jobPosition, date } =
     req.body;
 
   try {
@@ -15,6 +14,7 @@ const newTracking = async (req, res, next) => {
       userId,
       userLocation,
       jobId,
+      jobPosition,
       date,
     }).save();
     return res.status(200);

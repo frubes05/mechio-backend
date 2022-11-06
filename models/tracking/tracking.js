@@ -25,6 +25,10 @@ const TrackingSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  jobPosition: {
+    type: String,
+    required: false
+  },
   userId: {
     type: String,
     required: false
