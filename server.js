@@ -12,6 +12,7 @@ const companies = require('./routes/companies/companies');
 const users = require('./routes/users/users');
 const feedbacks = require('./routes/feedbacks/feedbacks');
 const profile = require('./routes/profile/profile');
+const tracking = require('./routes/tracking/tracking');
 
 mongoose.connect(`${process.env.MONGOCONNECTION}`)
 
@@ -26,6 +27,7 @@ app.use('/posloprimci', users);
 app.use('/poslovi', jobs);
 app.use('/recenzije', feedbacks);
 app.use('/profil', profile);
+app.use('/analitika', tracking);
 
 
 app.listen(9000, (PORT) => {
