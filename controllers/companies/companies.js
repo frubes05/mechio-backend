@@ -18,7 +18,8 @@ const loginCompany = async(req, res) => {
             const payload = {
                 _id: companyExists._id,
                 companyEmail,
-                company: true
+                company: true,
+                companyPremium: companyExists.companyPremium
             }
             jwt.sign(payload, 'secret', {expiresIn: '1d'}, (err, token) => {
                 if (err) console.log(err);
@@ -69,7 +70,8 @@ const registerCompany = async(req, res) => {
             _id: comp._id,
             companyName,
             companyEmail,
-            company: true
+            company: true,
+            companyPremium
         }
         jwt.sign(payload, 'secret', {expiresIn: '1d'}, (err, token) => {
             if (err) console.log(err);
