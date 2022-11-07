@@ -13,6 +13,7 @@ const users = require('./routes/users/users');
 const feedbacks = require('./routes/feedbacks/feedbacks');
 const profile = require('./routes/profile/profile');
 const tracking = require('./routes/tracking/tracking');
+const payments = require('./routes/payments/payments');
 
 mongoose.connect(`${process.env.MONGOCONNECTION}`)
 
@@ -28,6 +29,7 @@ app.use('/poslovi', jobs);
 app.use('/recenzije', feedbacks);
 app.use('/profil', profile);
 app.use('/analitika', tracking);
+app.use('/placanja', payments);
 
 
 app.listen(9000, (PORT) => {
