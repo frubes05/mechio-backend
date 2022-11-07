@@ -1,7 +1,9 @@
 const stripe = require("stripe")(process.env.STRIPESECRETTEST);
+const Companies = require('../../models/companies/companies');
+
 
 const handlePayment = async (req, res, next) => {
-  let { amount, id } = req.body;
+  let { amount, id, companyId } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
         amount,
@@ -21,6 +23,9 @@ const handlePayment = async (req, res, next) => {
         success: false
     })
   }
+  const company = await Companies.findById(companyId);
+  company.companyPremium = true;
+  await company.save();
 };
 
 exports.handlePayment = handlePayment;

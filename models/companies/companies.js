@@ -30,6 +30,10 @@ const CompanySchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  companyPremium: {
+    type: Boolean,
+    required: true
+  },
   companyFeedbacks: [FeedbackSchema]
 });
 

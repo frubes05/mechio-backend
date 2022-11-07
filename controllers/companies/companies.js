@@ -37,7 +37,7 @@ const loginCompany = async(req, res) => {
 }
 
 const registerCompany = async(req, res) => {
-    const {companyName, companyPassword, companyEmail, companyNumber, companyAddress, companyDescription, companyImage} = req.body;
+    const {companyName, companyPassword, companyEmail, companyNumber, companyAddress, companyDescription, companyPremium, companyImage} = req.body;
 
     if (!companyName || !companyPassword || !companyEmail || !companyNumber || !companyAddress) {
         return res.json({message: 'Molimo vas da popunite sva potrebna polja!', status: 400})
@@ -45,6 +45,7 @@ const registerCompany = async(req, res) => {
 
     const companyExists = await Companies.findOne({companyName: companyName, companyEmail: companyEmail});
     const userExists = await Users.findOne({email: companyEmail});
+    const premium = JSON.parse(companyPremium);
 
     if (companyExists) {
         return res.json({message: 'Već postoje podaci za navedenog poslodavca!', status: 400})
@@ -60,6 +61,7 @@ const registerCompany = async(req, res) => {
             companyAddress,
             companyDescription,
             companyImage: req.file.path,
+            companyPremium: premium,
             companyFeedbacks: []
         })
         const comp = await newCompany.save();
