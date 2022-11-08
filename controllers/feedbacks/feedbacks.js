@@ -5,8 +5,8 @@ const getAllFeedbacks = async(req, res) => {
     try {
         const allFeedbacks = await Feedback.find({});
         const companies = await Companies.find({});
-        const feedbacksAvailable = allFeedbacks.map(feedback => {
-            return companies.filter(c => c._id.toString() === feedback.companyId);
+        const feedbacksAvailable = companies.map(company => {
+            return allFeedbacks.filter(f => f.companyId === company._id.toString());
         })
         res.status(200).json(feedbacksAvailable);
     } catch (error) {
