@@ -15,7 +15,7 @@ const JobSchema = new mongoose.Schema({
     },
     companyPremium: {
         type: Boolean,
-        required: true
+        required: false
     },
     position: {
         type: String,

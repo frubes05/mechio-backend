@@ -32,7 +32,7 @@ const CompanySchema = new mongoose.Schema({
   },
   companyPremium: {
     type: Boolean,
-    required: true
+    required: false
   },
   companyFeedbacks: [FeedbackSchema]
 });
