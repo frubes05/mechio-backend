@@ -13,6 +13,10 @@ const JobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    companyPremium: {
+        type: Boolean,
+        required: true
+    },
     position: {
         type: String,
         required: true
