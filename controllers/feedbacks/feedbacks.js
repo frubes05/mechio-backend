@@ -26,7 +26,7 @@ const getSpecificFeedback = async(req, res) => {
 }
 
 const newCompanyFeedback = async(req, res) => {
-    const { userId, companyId, companyImage, position, rating, category, positives, negatives, date} = req.body;
+    const { userId, companyId, companyImage, companyName, position, rating, category, positives, negatives, date} = req.body;
 
     const company = await Companies.findOne({_id: companyId});
     const alreadyExists = await Feedback.findOne({userId: userId, companyId: companyId, category: category});
@@ -34,7 +34,7 @@ const newCompanyFeedback = async(req, res) => {
     if (alreadyExists) {
         return res.status(403).json({message: 'Već ste dali recenziju za ovu kategoriju!'});
     } else {
-        const feedback = Feedback({ userId, companyId, companyImage, position, category, rating, positives, negatives, date});
+        const feedback = Feedback({ userId, companyId, companyImage, companyName, position, category, rating, positives, negatives, date});
         await feedback.save();
         company.companyFeedbacks.push(feedback);
         await company.save();

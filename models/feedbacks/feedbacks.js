@@ -13,6 +13,10 @@ const FeedbackSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    companyName: {
+        type: String,
+        required: false
+    },
     position: {
         type: String,
         required: true,
