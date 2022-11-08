@@ -38,9 +38,9 @@ const loginCompany = async(req, res) => {
 }
 
 const registerCompany = async(req, res) => {
-    const {companyName, companyPassword, companyEmail, companyNumber, companyAddress, companyDescription, companyPremium, companyImage} = req.body;
+    const {companyName, companyPassword, companyEmail, companyNumber, companyAddress, companyLocation, companyDescription, companyPremium, companyImage} = req.body;
 
-    if (!companyName || !companyPassword || !companyEmail || !companyNumber || !companyAddress) {
+    if (!companyName || !companyPassword || !companyEmail || !companyNumber || !companyAddress || !companyLocation) {
         return res.json({message: 'Molimo vas da popunite sva potrebna polja!', status: 400})
     }
 
@@ -60,6 +60,7 @@ const registerCompany = async(req, res) => {
             companyEmail,
             companyNumber,
             companyAddress,
+            companyLocation,
             companyDescription,
             companyImage: req.file.path,
             companyPremium: premium,

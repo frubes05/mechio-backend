@@ -20,6 +20,7 @@ const loginUser = async(req, res) => {
                 _id: userExists._id,
                 email,
                 user: true,
+                userLocation: userExists.location,
                 loggedIn: true
             }
             jwt.sign(payload, 'secret', {expiresIn: '1d'}, (err, token) => {
@@ -39,9 +40,9 @@ const loginUser = async(req, res) => {
 }
 
 const registerUser = async(req, res) => {
-    const {fullname, password, email, number, address, about} = req.body;
+    const {fullname, password, email, number, address, location, about} = req.body;
 
-    if (!fullname || !password || !email || !number || !address) {
+    if (!fullname || !password || !email || !number || !address || !location) {
         return res.status(400).json({message: 'Molimo vas da popunite sva potrebna polja!', status: 400})
     }
 
@@ -57,6 +58,7 @@ const registerUser = async(req, res) => {
             email,
             number,
             address,
+            location,
             about,
             cv: req.files['cv'][0].path,
             image: req.files['image'][0].path,
@@ -67,6 +69,7 @@ const registerUser = async(req, res) => {
             _id: user._id,
             email,
             user: true,
+            userLocation: location,
             loggedIn: true
         }
         jwt.sign(payload, 'secret', {expiresIn: '1d'}, (err, token) => {

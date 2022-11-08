@@ -26,6 +26,10 @@ const CompanySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  companyLocation: {
+    type: String,
+    required: false
+  },
   companyImage: {
     type: String,
     required: false,
