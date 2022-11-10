@@ -60,8 +60,8 @@ const registerUser = async(req, res) => {
             address,
             location,
             about,
-            cv: req.files['cv'][0].path,
-            image: req.files['image'][0].path,
+            cv: req.files['cv'][0].path.replace(/\//g, '/'),
+            image: req.files['image'][0].path.replace(/\//g, '/'),
             applications: []
         })
         const user = await newUser.save();

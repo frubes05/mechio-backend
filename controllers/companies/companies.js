@@ -62,7 +62,7 @@ const registerCompany = async(req, res) => {
             companyAddress,
             companyLocation,
             companyDescription,
-            companyImage: req.file.path,
+            companyImage: req.file.path.replace(/\//g, '/'),
             companyPremium: premium,
             companyFeedbacks: []
         })
