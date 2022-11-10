@@ -48,8 +48,6 @@ const registerCompany = async(req, res) => {
     const userExists = await Users.findOne({email: companyEmail});
     const premium = JSON.parse(companyPremium);
 
-    console.log(req.file.path.replace(/\//g, '\\'));
-
     if (companyExists) {
         return res.json({message: 'Već postoje podaci za navedenog poslodavca!', status: 400})
     } else if (userExists) {
