@@ -153,7 +153,6 @@ const getUserApplications = async(req, res) => {
 
 const getSpecificUserFeedbacks = async(req, res) => {
     const id = req.params.id;
-    console.log(id);
     try {
         const companies = await Companies.find({});
         const feedbacks = await Feedback.find({userId: req.params.id});

@@ -14,6 +14,7 @@ const getAllFeedbacks = async(req, res) => {
     }
 }
 
+
 const getSpecificFeedback = async(req, res) => {
     const { id } = req.params;
 
@@ -55,7 +56,17 @@ const deleteFeedback = async(req, res) => {
     }
 };
 
+const showLastThree = async(req, res) => {
+    try {
+        const allFeedbacks = await Feedback.find({});
+        return res.status(200).json(allFeedbacks.slice(allFeedbacks.length - 4, allFeedbacks.length));
+    } catch (error) {
+        return res.status(404).json({message: error.message});
+    }
+};
+
 exports.newCompanyFeedback = newCompanyFeedback;
 exports.getSpecificFeedback = getSpecificFeedback;
 exports.getAllFeedbacks = getAllFeedbacks;
+exports.showLastThree = showLastThree;
 exports.deleteFeedback = deleteFeedback;
