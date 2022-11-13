@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require("fs");
-const path = './scrappedData.json';
+const path = './scrapping/data/getCV.json';
 
 let subPages = [];
 
@@ -40,7 +40,7 @@ let subPages = [];
   await browser.close();
 
   if (!fs.existsSync(path)) {
-    fs.writeFile('scrappedData.json', JSON.stringify(subPages), () => {
+    fs.writeFile('./scrapping/data/getCV.json', JSON.stringify(subPages), () => {
         console.log('Added scrapped data!');
     })
   }
