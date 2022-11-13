@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('child_process').fork('puppeteer.js');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -14,6 +15,7 @@ const feedbacks = require('./routes/feedbacks/feedbacks');
 const profile = require('./routes/profile/profile');
 const tracking = require('./routes/tracking/tracking');
 const payments = require('./routes/payments/payments');
+const advices = require('./routes/advices/advices');
 
 mongoose.connect(`${process.env.MONGOCONNECTION}`)
 
@@ -30,6 +32,7 @@ app.use('/recenzije', feedbacks);
 app.use('/profil', profile);
 app.use('/analitika', tracking);
 app.use('/placanja', payments);
+app.use('/savjeti', advices);
 
 
 app.listen(9000, (PORT) => {

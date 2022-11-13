@@ -4,7 +4,8 @@
   "description": "App for mechanical engineering jobs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "puppeteer": "nodemon puppeteer.js"
   },
   "author": "Filip Rubes",
   "license": "ISC",
