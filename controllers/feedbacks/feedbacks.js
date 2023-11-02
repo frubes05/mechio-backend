@@ -50,7 +50,7 @@ const deleteFeedback = async(req, res) => {
         await Feedback.findByIdAndRemove(req.params.id);
         company.companyFeedbacks = company.companyFeedbacks.filter(feedback => feedback._id.toString() !== req.params.id);
         await company.save();
-        res.status(200).json({message: 'Recenzija uspješno izbrisana!'});
+        res.status(200).json({message: 'Recenzija uspješno izbrisana!', deleteId: req.params.id});
     } catch (error) {
         res.status(404).json({message: 'Došlo je do pogrješke!', status: 404});
     }
