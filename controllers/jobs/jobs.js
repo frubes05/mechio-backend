@@ -57,7 +57,7 @@ const addNewJob = async(req, res) => {
     const {companyId, company, companyPremium, position, description, location, seniority, pay, date} = req.body;
 
     try {
-        if(!companyId || !company || !companyPremium || !position || !description || !location || !seniority || !pay || !date) {
+        if(!companyId || !company || !position || !description || !location || !seniority || !pay || !date) {
             return res.json({message: 'Molimo unesite sve relevantne podatke!', status: 404})
         }else {
             const getCompany = await Companies.findOne({_id: companyId});
