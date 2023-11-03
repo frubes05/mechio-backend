@@ -19,6 +19,7 @@ const loginUser = async(req, res) => {
             const payload = {
                 _id: userExists._id,
                 email,
+                fullname: userExists.fullname,
                 user: true,
                 userLocation: userExists.location,
                 loggedIn: true

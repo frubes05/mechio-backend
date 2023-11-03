@@ -19,6 +19,7 @@ const loginCompany = async(req, res) => {
                 _id: companyExists._id,
                 companyEmail,
                 company: true,
+                companyName: companyExists.companyName,
                 companyPremium: companyExists.companyPremium
             }
             jwt.sign(payload, 'secret', {expiresIn: '1d'}, (err, token) => {
